@@ -2,27 +2,9 @@
     <script src="https://unpkg.com/html5-qrcode"></script>
     <body>
       <div id="qr-reader" style="width:100%"></div>
-      <div id="qr-reader-results"></div>
     </body>
-    <script type="text/javascript">
-      var resultContainer = document.getElementById('qr-reader-results');
-      var lastResult, countResults = 0;
-  
-      function onScanSuccess(decodedText, decodedResult) {
-        window.open(decodedText);
-  //         if (decodedText !== lastResult) {
-  //             ++countResults;
-  //             lastResult = decodedText;
-  //             // Handle on success condition with the decoded message.
-  //             console.log(`Scan result ${decodedText}`, decodedResult);
-  //         }
-      }
-      
+    <script type="text/javascript">        
       Html5Qrcode.getCameras().then(devices => {
-        /**
-         * devices would be an array of objects of type:
-         * { id: "id", label: "label" }
-         */
         if (devices && devices.length) {
           var a = devices.length;
           var cameraId = devices[a-1].id;
@@ -31,18 +13,20 @@
             cameraId, 
             {
               fps: 10,   
-              qrbox: { width: 350, height: 350 }  
+              qrbox: { width: 300, height: 300 }  
             },
             (decodedText, decodedResult) => {
-              alert(decodedText);
+              window.open(decodedText,"_self");
             },
             (errorMessage) => {
+                alert(errorMessage);
             })
           .catch((err) => {
+              alert("error : " + err);
           });
         }
       }).catch(err => {
-        // handle err
+        alert("Perangkat tidak didukung.");
       });
     </script>
   </html>
