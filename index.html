@@ -10,12 +10,13 @@
     var lastResult, countResults = 0;
 
     function onScanSuccess(decodedText, decodedResult) {
-        if (decodedText !== lastResult) {
-            ++countResults;
-            lastResult = decodedText;
-            // Handle on success condition with the decoded message.
-            console.log(`Scan result ${decodedText}`, decodedResult);
-        }
+      window.open(decodedText);
+//         if (decodedText !== lastResult) {
+//             ++countResults;
+//             lastResult = decodedText;
+//             // Handle on success condition with the decoded message.
+//             console.log(`Scan result ${decodedText}`, decodedResult);
+//         }
     }
 
     var html5QrcodeScanner = new Html5QrcodeScanner(
