@@ -26,7 +26,8 @@
        * { id: "id", label: "label" }
        */
       if (devices && devices.length) {
-        var cameraId = devices[0].id;
+        var a = device.length;
+        var cameraId = devices[a-1].id;
         const html5QrCode = new Html5Qrcode("qr-reader");
         html5QrCode.start(
           cameraId, 
